@@ -5,6 +5,8 @@ Mirrors and research repository documenting a variety of soldering iron controll
 <!-- MarkdownTOC -->
 
 * [Where is Open Firmware?](#where-is-open-firmware)
+* [Where is Docs for how to install Open Firmware](#where-is-docs-for-how-to-install-open-firmware)
+* [But where are schematics, photos, etc? for my KSGER Station?](#but-where-are-schematics-photos-etc-for-my-ksger-station)
 * [Introduction](#introduction)
 * [Sections](#sections)
   * [Controllers](#controllers)
@@ -25,9 +27,23 @@ Mirrors and research repository documenting a variety of soldering iron controll
 
 Here it is:
 
-* [Newest Source Code](https://github.com/dreamcat4/stm32_soldering_iron_controller)
-* Based of PTDreamer's source code for the `v1.5` hardware. It was then updated for `v2.1s` hardware
-* Last Updated: August 2020
+* [Newest Source Code](https://github.com/deividAlfa/stm32_soldering_iron_controller) by DavidAlpha.
+* Based of PTDreamer's source code for the `v1.5` hardware. It was then extensively updated by DavidAlpha.
+* Thanks DavidAlpha!
+
+<a id="where-is-docs-for-how-to-install-open-firmware"></a>
+## Where is Docs for how to install Open Firmware
+
+Same place as the source code:
+
+* [Newest Source Code](https://github.com/deividAlfa/stm32_soldering_iron_controller) by DavidAlpha.
+* Thanks DavidAlpha!
+
+
+<a id="but-where-are-schematics-photos-etc-for-my-ksger-station"></a>
+## But where are schematics, photos, etc? for my KSGER Station?
+
+For most new visitors, you will find them here under the [`controllers` folder](https://github.com/dreamcat4/t12-t245-controllers-docs/tree/master/controllers/stm32-t12-oled)
 
 <a id="introduction"></a>
 ## Introduction
