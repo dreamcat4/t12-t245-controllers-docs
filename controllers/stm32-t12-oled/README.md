@@ -12,7 +12,7 @@
 	* [Experimental](#experimental)
 		* [Blue PCB 'Ve2.1S' r2 KSGER Version \(LWFP-64\)](#blue-pcb-ve21s-r2-ksger-version-lwfp-64)
 	* [Unknown or Not Supported](#unknown-or-not-supported)
-		* [Ve2.1S r3 \(Black PCB\), aka 'OLED-V3.0'](#ve21s-r3-black-pcb-aka-oled-v30)
+		* [v3.0 r0 \(Black PCB\), aka 'OLED-V3.0'](#v30-r0-black-pcb-aka-oled-v30)
 		* [Version 3 and newer](#version-3-and-newer)
 
 <!-- /MarkdownTOC -->
@@ -112,10 +112,15 @@ We can see from the photo (below) that the MCU is an [STM32F103RCT6](https://oct
 
 These PCBs are not tested yet by anybody with this Open Firmware. And are unlikely to work without further modifications. You are welcome to backup your own chip (= hot air replace it), and then try to work on support. Please submit PR, open issues in tracker for further discussion, etc.
 
-<a id="ve21s-r3-black-pcb-aka-oled-v30"></a>
-#### Ve2.1S r3 (Black PCB), aka 'OLED-V3.0'
+<a id="v30-r0-black-pcb-aka-oled-v30"></a>
+#### v3.0 r0 (Black PCB), aka 'OLED-V3.0'
 
-* Called "V3.1S" [on eevBlog Forums](https://www.eevblog.com/forum/reviews/ksger-t12-stm32-v3-1s-soldering-station/msg2873548/#msg2873548)
+These newer pcbs looks very similar to the above version ^^ "Blue PCB 'Ve2.1S' r2 KSGER Version (LWFP-64)"
+
+* The [cosmin - floobydust schematic, rev1](https://github.com/dreamcat4/t12-t245-controllers-docs/raw/master/controllers/stm32-t12-oled/v3.0-and-v3.1/r0/KSGER%20STM32%20OLED-3_0%20schematic%20rev1_cosmin_floobydust.pdf), Source - [thread on eevblog](https://www.eevblog.com/forum/reviews/stm32-oled-digital-soldering-station-for-t12-handle/msg3364926/#msg3364926)
+* [Folder with schematic, pictures, etc.](v3.0-and-v3.1/r0)
+* More details [in this eevblog post](https://www.eevblog.com/forum/reviews/stm32-oled-digital-soldering-station-for-t12-handle/msg3387712/#msg3387712)
+* Similar versions called "V3.1S" [on eevBlog Forums](https://www.eevblog.com/forum/reviews/ksger-t12-stm32-v3-1s-soldering-station/msg2873548/#msg2873548)
 
 ![Not sure what this is](v2.1s-and-Ve2.1S/r3/back-low-res.jpg)
 
