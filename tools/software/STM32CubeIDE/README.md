@@ -266,12 +266,6 @@ Now that we have established a connection over SWD interface. It would be simple
 
 The original firmware (OFW) flashed in the device is most likely to be copy protected. As we saw returned by the command `flash info 0`, which we issued in the interactive session earlier in this readme. After connecting to the OpenOCD background task through `telnet localhost 4444`. We issue the command `flash info 0` and it will report `protected` for all of the flash blocks.
 
-There are 3 main options:
-
-* [Replace the MCU](#option-1-replace-the-mcu)
-* [Power glitching timing attack \(difficult\)](#option-2-power-glitching-timing-attack-difficult)
-* [Compare partial dump to other known OFW Images](#option-3-compare-partial-dump-to-other-known-ofw-images)
-
 **Newer T12 OLED controllers:**
 
 For newer OLED T12 controllers. If the `Software Version:` shown in the menu is `3.00` os anything higher.
