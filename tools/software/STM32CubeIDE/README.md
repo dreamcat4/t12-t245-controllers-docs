@@ -19,12 +19,14 @@ How to setup development, debugging, flashing, etc. for the STM32 hardware platf
         * [Flash Info](#flash-info)
         * [Reset Halt](#reset-halt)
 * [Choosing a method to backup the OFW](#choosing-a-method-to-backup-the-ofw)
-    * [Option 1. Replace the MCU](#option-1-replace-the-mcu)
-    * [Option 2. Power glitching timing attack \(difficult\)](#option-2-power-glitching-timing-attack-difficult)
-    * [Option 3. Compare partial dump to other known OFW Images](#option-3-compare-partial-dump-to-other-known-ofw-images)
-        * [Recover partial firmware image](#recover-partial-firmware-image)
-        * [Running 'stm32-partial-image'](#running-stm32-partial-image)
-        * [Compare partial dump to known OFW images](#compare-partial-dump-to-known-ofw-images)
+    * [For Non Genuine Clone ST chips \(such as GD*, CK*, etc..\)](#for-non-genuine-clone-st-chips-such-as-gd-ck-etc)
+    * [For Genuine real ST chips \(STM32F103, etc..\)](#for-genuine-real-st-chips-stm32f103-etc)
+        * [Option 1. Replace the MCU](#option-1-replace-the-mcu)
+        * [Option 2. Power glitching timing attack](#option-2-power-glitching-timing-attack)
+        * [Option 3. Compare partial dump to other known OFW Images](#option-3-compare-partial-dump-to-other-known-ofw-images)
+            * [Recover partial firmware image](#recover-partial-firmware-image)
+            * [Running 'stm32-partial-image'](#running-stm32-partial-image)
+            * [Compare partial dump to known OFW images](#compare-partial-dump-to-known-ofw-images)
 * [Flash the new firmware](#flash-the-new-firmware)
 
 <!-- /MarkdownTOC -->
@@ -274,8 +276,6 @@ There are 3 main options:
 
 For newer OLED T12 controllers. If the `Software Version:` shown in the menu is `3.00` os anything higher.
 
-This means the recommended backup method is to replace the MCU entirely (option 1). And not bother to try partially dumping the existing OFW. Since there the original (full) version of those binaries are not available. So that would be a waste of time.
-
 It has been determined that newer KSGER designs, which may be marked as 'v3' or otherwise marked as 'v2' but use an I2C interface for the display. Those newer controllers are typically designed for in house KSGER firmware. Well after v2 KSGER took that firmware closed. And (at current time of writing) does not distribute such OFW binaries itself, nor are they otherwise available from 3rd party source. Due to those newer firmwares being written and updated in house.
 
 **Older T12 OLED controllers:**
@@ -286,23 +286,38 @@ For even older version 1.x designs, then an older OFW firmware may indeed also b
 
 Can your OFW firmware be found online? Well not all of them are available. The partial dump method can only work if you can also obtain copies of those original 'version 2' firmware files. They are typically found either on a Yandex Disk or Google Drive. Actually there are known to be 2 different uploads floating about. Source links are not provided directly here. But are readily available (at time of writing) by searching for such links in the Russian forums.
 
-If in any doubt, then use option 1 instead. And replace the MCU by hot air.
+<a id="for-non-genuine-clone-st-chips-such-as-gd-ck-etc"></a>
+### For Non Genuine Clone ST chips (such as GD*, CK*, etc..)
+
+Most products out there all seem to come with Genuine ST chips in them. So this section is not normally applicable.
+
+However if your product did not originally come with a genuine STM32F chip. But instead a chinese clone... with it's marking starting with something else (not `ST`). Such as `GD...` or `CK...` at the beginning. Then a hardware based attack may not be needed. In fact there are a variety of different attacks which may work for these Chinese clone chips. In this case [please read this paper fully](https://www.usenix.org/system/files/woot20-paper-obermaier.pdf). To find details of those other expoits.
+
+The accompanying code for these exploits [can be found here](https://github.com/JohannesObermaier/f103-analysis) in Johannes' github repository. Which includes POC code for each of the different attacks described in the research paper.
+
+<a id="for-genuine-real-st-chips-stm32f103-etc"></a>
+### For Genuine real ST chips (STM32F103, etc..)
 
 <a id="option-1-replace-the-mcu"></a>
-### Option 1. Replace the MCU
+#### Option 1. Replace the MCU
 
 The simplest and most straightforward 'foolproof' method to backup the OFW is to simply desolder the existing processor in it's LQFP package. Removing it from the PCB. And then replacing it with another equivalent (must be compatible!) STM32 chip obtained from somewhere else. You could either buy another one from an electronics supplier. Or alternatively get one from another broken device you happen to have lying around. They are fairly common and found in many consumer electronics!
 
 Then when you need to 'restore back' to OFW. You will need to physically de-solder the microcontroller and re-solder back the original chip. Which you had previously removed and kept for safe keeping.
 
-<a id="option-2-power-glitching-timing-attack-difficult"></a>
-### Option 2. Power glitching timing attack (difficult)
+<a id="option-2-power-glitching-timing-attack"></a>
+#### Option 2. Power glitching timing attack
 
-There does appear to be a known method which involves power rail glitching during boot up of the MCU. Which is not so easy to achieve and requires good timing. In order to glitch the processor at the correct point during the startup sequence.
+Currently (since August 2020) this is the only known method for fully extracting 100% of a firmware dump from a genuine STM32F103 series MCU. And this method probably will also work for other similar ST MCUs. That employ the same coretex M3 architecture, along with a similar set of security features. It requires (1) additional hardware device. Which is an STM32F3 development board. Which is fairly inexpensive.
 
-Due to the difficulty of that glitching method (and it perhaps requiring an oscilliscope etc. which I do not posess myself). This method is not covered in this section here of the README. Unless somebody else can come along and add it.
+This method involves power rail glitching the MCU. In order to make the MCU set a flag to say that it has fully power cycled. And therefore can be permitted to re-enable access to the flash memory where the program is stored. For next boot. However in reality by only cutting power very briefly, the special program loader we have written into SRAM is still remembered. And can then successfully execute the exploit instead.
 
-However here are some external links which describe the power glitching method.
+This is not normally easy to achieve and requires good timing. In order to glitch the processor at the correct point during the startup sequence. However as of August 2020 update, a research team has been able to demonstrate this exploit using only a cheap STM32F3 evaluation board. And no other equipment whatwoever. With the STM32F3 evaluation board doing both the glitching, and also acting as the programmer / hardware debugger.
+
+The expolit is put forward as Section "7.4  H3: Shellcode Exec. via Glitch and FPB" starting at [Page 9/13 of this research paper](https://www.usenix.org/system/files/woot20-paper-obermaier.pdf). Which describes the necessary details fairly well, and concisely. The code for the expolit can be [found here, under folder h3](https://github.com/JohannesObermaier/f103-analysis/tree/master/h3) of  Johannes' github repository. Which includes POC code for all of the various attacks mentioned in this paper.
+
+
+If you are interested more broadly in power glitching attacks. Then here are some older supplementary external links. Which describe the power glitching method in other scenarios. However whilst very invormative and eductations, they are no longer necessary for trying the above, now simpler exploit.
 
 1. https://tches.iacr.org/index.php/TCHES/article/download/7390/6562/
 2. https://github.com/kanflo/opendps/issues/20#issuecomment-443708473
@@ -310,14 +325,14 @@ However here are some external links which describe the power glitching method.
 
 
 <a id="option-3-compare-partial-dump-to-other-known-ofw-images"></a>
-### Option 3. Compare partial dump to other known OFW Images
+#### Option 3. Compare partial dump to other known OFW Images
 
 We can partially recover the firmware [using the following method](https://blog.zapb.de/stm32f1-exceptional-failure/). However every few bytes there will be invalid data. Since not all of the addresses in the block can be mapped to be read this way.
 
 According to the results table towards the end of the blog article, for the STM32F103 series we can extract 89.1% of the flash. And it took approximately 1 hour to extract 128 KB.
 
 <a id="recover-partial-firmware-image"></a>
-#### Recover partial firmware image
+##### Recover partial firmware image
 
 In this step we simply download the python tool, and execute it. We tell it to revocer the first `N` kilobytes of flash memory. The size of the flash on your STM32 chip will depend on which specific variant of the `STM32F103` series is on your specific PCB revision.
 
@@ -348,7 +363,7 @@ Now that we have read from the flash our partial firmware image, with the defaul
 Now that we have taken our firmware dump it is a good idea to manually inspect it. To make sure we have captured a cleam image with no communication errors over the wire. If the dump 'looks like real data'. Then you may additionally decide to take more than 1 flash dump. Then compare the checksums against each other for consistency. This helps to protect against some spurious error due to interference over the wires.
 
 <a id="running-stm32-partial-image"></a>
-#### Running 'stm32-partial-image'
+##### Running 'stm32-partial-image'
 
 Be sure to use [this fork](https://github.com/dreamcat4/stm32f1-firmware-extractor) of the stm32f1-firmware-extractor. Since that is where you can get the extra cmdline tool [`stm32f1-partial-image`](https://github.com/dreamcat4/stm32f1-firmware-extractor/blob/master/stm32f1-partial-image). Which is what we will using in this section.
 
@@ -431,7 +446,7 @@ After masking you should see a pattern like this:
 ```
 
 <a id="compare-partial-dump-to-known-ofw-images"></a>
-#### Compare partial dump to known OFW images
+##### Compare partial dump to known OFW images
 
 For this step we need to obtain a variety of firmwares. And then convert the intel `.HEX` format into binary `.BIN` image format. On unix systems it's something like this:
 

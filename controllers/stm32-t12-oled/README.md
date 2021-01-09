@@ -25,8 +25,6 @@ Information here about 'supported' compatibility is out of date. Check:
 
 ***[Backup the OFW](/tools/software/STM32CubeIDE#choosing-a-method-to-backup-the-ofw)***.
 
-**Most simple** and most practical way to backup your original KSGER firmware is to **physically remove the original STM32 chip with a hot air station**. And replace it with a new blank chip for programming the open firmware. Keep the old chip safe and a label it clearly. This is the recommended method.
-
 We do not recommend flashing over your existing official firmware (OFW) without first of all taking steps to ensure that you can recover back to the original stock image. In case the open source firmware is not to your liking, or cannot work with your specific hardware.
 
 <a id="known-pcb-variants"></a>
