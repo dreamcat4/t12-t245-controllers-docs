@@ -304,11 +304,13 @@ Then when you need to 'restore back' to OFW. You will need to physically de-sold
 
 Currently (since August 2020) this is the only known method for fully extracting 100% of a firmware dump from a genuine STM32F103 series MCU. And this method probably will also work for other similar ST MCUs. That employ the same coretex M3 architecture, along with a similar set of security features. It requires (1) additional hardware device. Which is an STM32F3 development board. Which is fairly inexpensive. Product to search for: `STM32F3DISCOVERY`. They are available for under < $20 from either Mouser or Digikey.
 
+![stm32f3discovery-power-glitch-setup.jpg](stm32f3discovery-power-glitch-setup.jpg)
+
 This method involves power rail glitching the MCU. In order to make the MCU set a flag to say that it has fully power cycled. And therefore can be permitted to re-enable access to the flash memory where the program is stored. For next boot. However in reality by only cutting power very briefly, the special program loader we have written into SRAM is still remembered. And can then successfully execute the exploit instead.
 
 This is not normally easy to achieve and requires good timing. In order to glitch the processor at the correct point during the startup sequence. However as of August 2020 update, a research team has been able to demonstrate this exploit using only a cheap STM32F3 evaluation board. And no other equipment whatwoever. With the STM32F3 evaluation board doing both the glitching, and also acting as the programmer / hardware debugger.
 
-The expolit is put forward as Section "7.4  H3: Shellcode Exec. via Glitch and FPB" starting at [Page 9/13 of this research paper](https://www.usenix.org/system/files/woot20-paper-obermaier.pdf). Which describes the necessary details fairly well, and concisely. The code for the expolit can be [found here, under folder h3](https://github.com/JohannesObermaier/f103-analysis/tree/master/h3) of  Johannes' github repository. Which includes POC code for all of the various attacks mentioned in this paper.
+The expolit is put forward as Section "7.4  H3: Shellcode Exec. via Glitch and FPB" starting at [Page 9/13 of this research paper](https://www.usenix.org/system/files/woot20-paper-obermaier.pdf) - [Mirror](woot20-paper-obermaier.pdf). This pdf describes the necessary details fairly well, and concisely. The code for the expolit can be [found here, under folder h3](https://github.com/JohannesObermaier/f103-analysis/tree/master/h3) of  Johannes' github repository. Which includes POC code for all of the various attacks mentioned in this paper.
 
 
 If you are interested more broadly in power glitching attacks. Then here are some older supplementary external links. Which describe the power glitching method in other scenarios. However whilst very invormative and eductations, they are no longer necessary for trying the above, now simpler exploit.
