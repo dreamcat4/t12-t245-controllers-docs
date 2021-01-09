@@ -302,7 +302,7 @@ Then when you need to 'restore back' to OFW. You will need to physically de-sold
 <a id="option-2-power-glitching-timing-attack"></a>
 #### Option 2. Power glitching timing attack
 
-Currently (since August 2020) this is the only known method for fully extracting 100% of a firmware dump from a genuine STM32F103 series MCU. And this method probably will also work for other similar ST MCUs. That employ the same coretex M3 architecture, along with a similar set of security features. It requires (1) additional hardware device. Which is an STM32F3 development board. Which is fairly inexpensive.
+Currently (since August 2020) this is the only known method for fully extracting 100% of a firmware dump from a genuine STM32F103 series MCU. And this method probably will also work for other similar ST MCUs. That employ the same coretex M3 architecture, along with a similar set of security features. It requires (1) additional hardware device. Which is an STM32F3 development board. Which is fairly inexpensive. Product to search for: `STM32F3DISCOVERY`. They are available for under < $20 from either Mouser or Digikey.
 
 This method involves power rail glitching the MCU. In order to make the MCU set a flag to say that it has fully power cycled. And therefore can be permitted to re-enable access to the flash memory where the program is stored. For next boot. However in reality by only cutting power very briefly, the special program loader we have written into SRAM is still remembered. And can then successfully execute the exploit instead.
 
