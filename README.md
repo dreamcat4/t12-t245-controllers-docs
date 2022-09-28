@@ -1,27 +1,28 @@
 # t12-t245-controllers-docs
 
+# Table of Contents
+* [Where is Open Firmware](#Where-is-Open-Firmware)
+	* [STM32 based - For KSGER T12 OLED or QUICK](#STM32-based---For-KSGER-T12-OLED-or-QUICK)
+	* [MM32SPIN27 based - For T12-958 soldering station](#MM32SPIN27-based---For-T12-958-soldering-station)
+* [Where is Docs for how to install Open Firmware](#Where-is-Docs-for-how-to-install-Open-Firmware)
+* [Where are schematics photos etc for my KSGER Station](#Where-are-schematics-photos-etc-for-my-KSGER-Station)
+* [Introduction](#Introduction)
+* [Sections](#Sections)
+	* [Controllers](#Controllers)
+	* [Tips and Handles](#Tips-and-Handles)
+	* [Tools](#Tools)
+	* [Research](#Research)
+* [Disclaimers](#Disclaimers)
+	* [Organisation and Navigation](#Organisation-and-Navigation)
+	* [Copyright and Attribution](#Copyright-and-Attribution)
+	* [Mirrors](#Mirrors)
+
+
 Mirrors and research repository documenting a variety of soldering iron controllers for t12, t245, and more!
 
-<!-- MarkdownTOC -->
+## Where is Open Firmware
 
-* [Where is Open Firmware?](#where-is-open-firmware)
-* [Where is Docs for how to install Open Firmware](#where-is-docs-for-how-to-install-open-firmware)
-* [But where are schematics, photos, etc? for my KSGER Station?](#but-where-are-schematics-photos-etc-for-my-ksger-station)
-* [Introduction](#introduction)
-* [Sections](#sections)
-  * [Controllers](#controllers)
-  * [Tips and Handles](#tips-and-handles)
-  * [Tools](#tools)
-  * [Research](#research)
-* [Disclaimers](#disclaimers)
-  * [Organisation / Navigation](#organisation--navigation)
-  * [Copyright and Attribution](#copyright-and-attribution)
-  * [Mirrors](#mirrors)
-
-<!-- /MarkdownTOC -->
-
-<a id="where-is-open-firmware"></a>
-## Where is Open Firmware?
+### STM32 based - For KSGER T12 OLED or QUICK
 
 * Looking for Open Source Firmware, to Flash on to KSGER / T12 OLED Station?
 
@@ -30,6 +31,15 @@ Here it is:
 * [Newest Source Code](https://github.com/deividAlfa/stm32_soldering_iron_controller) by DavidAlpha.
 * Based of PTDreamer's source code for the `v1.5` hardware. It was then extensively updated by DavidAlpha.
 * Thanks DavidAlpha!
+
+### MM32SPIN27 based - For T12-958 soldering station
+
+* Looking for Open Source Firmware, to Flash on to T12-958 soldering station?
+
+Here it is:
+
+* [Main repo](https://github.com/koendv/t12-958)
+* Created by @koendv, for boards with MindMotion MM32SPIN27 mcu
 
 <a id="where-is-docs-for-how-to-install-open-firmware"></a>
 ## Where is Docs for how to install Open Firmware
@@ -41,7 +51,7 @@ Same place as the source code:
 
 
 <a id="but-where-are-schematics-photos-etc-for-my-ksger-station"></a>
-## But where are schematics, photos, etc? for my KSGER Station?
+## Where are schematics photos etc for my KSGER Station
 
 For most new visitors, you will find them here under the [`controllers` folder](https://github.com/dreamcat4/t12-t245-controllers-docs/tree/master/controllers/stm32-t12-oled)
 
@@ -94,7 +104,7 @@ Whatever documentation you find here is provided 'as is'. Source materials have 
 However if you do manage to spot an error. And feel that you can suggest an improvement to help better organise this documentation. Then please put together a Pull Request, or Open a new issue, and put forward those ammendments. Such corrections and improvements are most welcome.
 
 <a id="organisation--navigation"></a>
-### Organisation / Navigation
+### Organisation and Navigation
 
 Usually you will start in a parent folder by reading it's README.md. Which describes what is inside that specific folder. Then by clicking or navigating into subfolders, they will very often have their own more specific README.md file. With more details and / or links to elswhere.
 
@@ -109,6 +119,3 @@ All copyrighted or trademarked materials remain the property of their respective
 ### Mirrors
 
 In order to preserve fully the context and the source of the information being provided. Some information sources are provided here as a website mirror. This is either for an archival purpose, should the source become inaccessible in the future. Or to provide an appropriate English Language translation of the source material(s). Which was essential processing step in order to disseminate those information sources. Otherwise those materials would not be an a browsable format. And their contribution would have been missed. Just like all of the other source materials gathered here, a mirrored information source is considered to remain under the ownership of it's respective copyright and trademark holder(s). And therefore subject to the same terms per the previous section.
-
-
-
