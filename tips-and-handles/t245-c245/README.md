@@ -53,7 +53,7 @@ Photos of the Handle cable's wiring to the Hi-rose connector
 <a id="cross-section-image"></a>
 ### Cross Section Image
 
-![C245 Tip Cross Section](c245-tip-cross-section.jpg)
+![C245 Tip Cross Section](t245-tip-cross-section.jpg)
 
 <a id="thermocouple-plot-from-hazars-blog"></a>
 ### Thermocouple plot from Hazar's Blog
